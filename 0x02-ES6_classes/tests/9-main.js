@@ -1,5 +1,4 @@
 import listOfStudents, { HolbertonClass, StudentHolberton } from '../9-hoisting';
-const assert = require('assert');
 
 console.log(listOfStudents);
 
