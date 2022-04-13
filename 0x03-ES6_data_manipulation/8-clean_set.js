@@ -1,9 +1,18 @@
 export default function cleanSet(set, startString) {
-  let compoundString = '';
-  set.forEach((s) => {
-    if (s.startsWith(startString) && startString.length > 0) {
-      compoundString += `-${s.slice(startString.length, s.length)}`;
+  const subStrings = [];
+
+  if (!set || !startString || !(set instanceof Set) || typeof startString !== 'string') {
+    return '';
+  }
+
+  for (const value of set.values()) {
+    if (typeof value === 'string' && value.substring(startString.length)) {
+      const valueSubStr = value.substring(startString.length);
+
+      if (valueSubStr && valueSubStr !== value) {
+        subStrings.push(valueSubStr);
+      }
     }
-  });
-  return (compoundString) ? compoundString.slice(1, compoundString.length) : compoundString;
+  }
+  return subStrings.join('-');
 }
